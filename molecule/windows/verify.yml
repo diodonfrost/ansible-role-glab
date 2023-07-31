@@ -2,11 +2,11 @@
 - name: Verify
   hosts: all
   tasks:
-    - name: Linux | Glab should be functionnal
-      command: glab --version
+    - name: Windows | Glab should be functionnal
+      ansible.windows.win_command: glab --version
       register: glab_version_result
 
-    - name: Linux | Verify commands outputs
+    - name: Windows | Verify commands outputs
       assert:
         that:
           - glab_version_result.rc == 0

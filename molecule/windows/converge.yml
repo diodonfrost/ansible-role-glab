@@ -3,7 +3,7 @@
   hosts: all
   tasks:
     - name: "Include ansible-role-glab"
-      include_role:
+      ansible.builtin.include_role:
         name: "ansible-role-glab"
       vars:
         glab_version: "{{ lookup('env', 'glab_version') | default('latest', true) }}"
