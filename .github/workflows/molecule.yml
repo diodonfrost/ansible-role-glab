@@ -1,0 +1,55 @@
+name: molecule
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 18 * * sun'
+
+jobs:
+  test:
+    name: ${{ matrix.image }} glab ${{ matrix.glab_version }}
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - almalinux:8
+          - rockylinux:8
+          - fedora:37
+          - ubuntu:22.04
+          - debian:12
+          - amazonlinux:2
+          - opensuse:leap
+          - archlinux:latest
+          - alpine:latest
+          - gentoo:latest
+        glab_version:
+          - latest
+          - v1.31.0
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Install Molecule
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Test Ansible role
+        run: molecule test
+        env:
+          image: ansible-${{ matrix.image }}
+          glab_version: ${{ matrix.glab_version }}
+
+      - name: Test Ansible role with check_mode enable
+        run: molecule check
+        env:
+          image: ansible-${{ matrix.image }}
+          glab_version: ${{ matrix.glab_version }}
