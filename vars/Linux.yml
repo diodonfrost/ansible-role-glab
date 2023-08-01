@@ -1,0 +1,3 @@
+---
+default_glab_pkg_url: "https://gitlab.com/gitlab-org/cli/-/releases/{{ glab_version_to_install }}/downloads/glab_{{ glab_version_to_install | replace('v','') }}_Linux_{{ base_arch[ansible_facts['architecture']] }}.tar.gz"
+default_glab_bin_directory: /usr/local/bin/

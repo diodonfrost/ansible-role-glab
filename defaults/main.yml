@@ -1,2 +1,14 @@
 ---
 # defaults file for glab
+
+# Define glab version to install
+# Default: latest
+glab_version: latest
+
+# Define where to download glab package url
+# Default: use local system path defined in Ansible vars/*.yml
+glab_pkg_url: "{{ default_glab_pkg_url }}"
+
+# Define where to install glab binary
+# Default: use local system path defined in Ansible vars/*.yml
+glab_bin_directory: "{{ default_glab_bin_directory }}"
