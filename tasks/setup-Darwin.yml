@@ -1,0 +1,38 @@
+---
+- name: Darwin | Get the latest published full release for the repository
+  ansible.builtin.uri:
+    url: https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/releases
+    return_content: yes
+  register: glab_releases_index
+  check_mode: no
+  when: glab_version == "latest"
+
+- name: Darwin | Find the latest glab version
+  ansible.builtin.set_fact:
+    glab_version_to_install: "{{ (glab_releases_index.content | from_json).0.tag_name }}"
+  when: glab_version == 'latest'
+
+- name: Darwin | Use the specified glab version when latest var is not define
+  ansible.builtin.set_fact:
+    glab_version_to_install: "{{ glab_version }}"
+  when: glab_version != 'latest'
+
+- name: Darwin | Create TMP Folder
+  ansible.builtin.file:
+    path: "/tmp/glab/"
+    state: directory
+    mode: 0755
+
+- name: Darwin | Extract Glab in the TMP Folder
+  ansible.builtin.unarchive:
+   src: "{{ glab_pkg_url }}"
+   dest: "/tmp/glab/"
+   remote_src: yes
+   creates: "/tmp/glab/bin/glab"
+
+- name: Darwin | Install Glab
+  ansible.builtin.copy:
+    src: "/tmp/glab/bin/glab"
+    dest: "{{ glab_bin_directory }}"
+    mode: 0755
+    remote_src: true
