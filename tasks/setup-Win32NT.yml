@@ -1,0 +1,26 @@
+---
+- name: Windows | Get the latest published full release for the repository
+  ansible.windows.win_uri:
+    url: https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/releases
+    return_content: yes
+    headers:
+      user-agent: Mozilla/5.0
+  register: glab_releases_index
+  check_mode: no
+  when: glab_version == 'latest'
+
+- name: Windows | Find the latest glab version
+  ansible.builtin.set_fact:
+    glab_version_to_install: "{{ (glab_releases_index.content | from_json).0.tag_name }}"
+  when: glab_version == 'latest'
+
+- name: Windows | Use the specified glab version when latest var is not define
+  ansible.builtin.set_fact:
+    glab_version_to_install: "{{ glab_version }}"
+  when: glab_version != 'latest'
+
+- name: Windows | Install Gitlab cli Glab
+  ansible.windows.win_get_url:
+    url: "{{ glab_pkg_url }}"
+    dest: "{{ default_glab_bin_directory }}"
+    force: yes
