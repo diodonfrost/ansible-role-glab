@@ -3,4 +3,5 @@
   hosts: all
   gather_facts: false
   tasks:
-    - ansible.windows.win_shell: echo "nothing to do"
+    - name: Windows | Molecule windows require prepare.yml
+      ansible.windows.win_shell: echo "nothing to do"

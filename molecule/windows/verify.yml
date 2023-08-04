@@ -7,7 +7,7 @@
       register: glab_version_result
 
     - name: Windows | Verify commands outputs
-      assert:
+      ansible.builtin.assert:
         that:
           - glab_version_result.rc == 0
         success_msg: "All tests passed"
