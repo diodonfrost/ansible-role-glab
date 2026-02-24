@@ -1,0 +1,8 @@
+.ansible/
+*.retry
+__pycache__/
+*.pyc
+.cache
+.venv
+.molecule/
+.pytest_cache/
