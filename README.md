@@ -15,7 +15,7 @@ This role has multiple variables. The defaults for all these variables are the f
 
 ```yaml
 ---
-# defaults file for ansible-role-glab
+# defaults file for glab
 
 # Define glab version to install
 # Default: latest
@@ -23,11 +23,11 @@ glab_version: latest
 
 # Define where to download glab package url
 # Default: use local system path defined in Ansible vars/*.yml
-glab_pkg_url: "{{ default_glab_pkg_url }}"
+glab_pkg_url: "{{ _default_glab_pkg_url }}"
 
 # Define where to install glab binary
 # Default: use local system path defined in Ansible vars/*.yml
-glab_bin_directory: "{{ default_glab_bin_directory }}"
+glab_bin_directory: "{{ _default_glab_bin_directory }}"
 ```
 
 ## Dependencies
