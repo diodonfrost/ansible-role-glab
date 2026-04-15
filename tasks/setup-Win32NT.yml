@@ -22,5 +22,5 @@
 - name: Windows | Install Gitlab cli Glab
   ansible.windows.win_get_url:
     url: "{{ glab_pkg_url }}"
-    dest: "{{ _default_glab_bin_directory }}"
+    dest: "{{ glab_bin_directory }}"
     force: yes
