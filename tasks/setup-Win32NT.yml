@@ -2,11 +2,11 @@
 - name: Windows | Get the latest published full release for the repository
   ansible.windows.win_uri:
     url: https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/releases
-    return_content: yes
+    return_content: true
     headers:
       user-agent: Mozilla/5.0
   register: glab_releases_index
-  check_mode: no
+  check_mode: false
   when: glab_version == 'latest'
 
 - name: Windows | Find the latest glab version
@@ -23,4 +23,4 @@
   ansible.windows.win_get_url:
     url: "{{ glab_pkg_url }}"
     dest: "{{ glab_bin_directory }}"
-    force: yes
+    force: true

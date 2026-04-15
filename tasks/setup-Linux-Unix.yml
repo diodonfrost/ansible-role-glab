@@ -2,9 +2,9 @@
 - name: Linux/Unix | Get the latest published full release for the repository
   ansible.builtin.uri:
     url: https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/releases
-    return_content: yes
+    return_content: true
   register: glab_releases_index
-  check_mode: no
+  check_mode: false
   when: glab_version == "latest"
 
 - name: Linux/Unix | Find the latest glab version
@@ -27,7 +27,7 @@
   ansible.builtin.unarchive:
    src: "{{ glab_pkg_url }}"
    dest: "/tmp/glab/"
-   remote_src: yes
+   remote_src: true
    creates: "/tmp/glab/bin/glab"
 
 - name: Linux/Unix | Install Glab
