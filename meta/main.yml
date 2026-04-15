@@ -4,77 +4,41 @@ galaxy_info:
   namespace: diodonfrost
   description: Install Gitlab glab
   company: diodonfrost
+  license: Apache-2.0
 
-  min_ansible_version: 2.5
+  min_ansible_version: "2.12"
 
   platforms:
     - name: EL
       versions:
-        - 8
-        - 7
+        - all
     - name: Fedora
       versions:
-        - 29
-        - 28
-        - 27
-        - 26
+        - all
     - name: Debian
       versions:
-        - buster
-        - stretch
-        - jessie
-        - wheezy
-        - squeeze
+        - all
     - name: Ubuntu
       versions:
-        - bionic
-        - xenial
-        - trusty
+        - all
     - name: Amazon
       versions:
-        - 2017.12
-        - 2016.03
+        - all
     - name: opensuse
       versions:
-        - 15.2
-        - 15.1
-        - 15.0
-        - 42.2
-        - 42.1
+        - all
     - name: ArchLinux
       versions:
-        - any
+        - all
     - name: Alpine
       versions:
-        - any
-    - name: Gentoo
-      versions:
-        - any
-    - name: ClearLinux
-      versions:
-        - any
-    - name: FreeBSD
-      versions:
-        - 11.2
-        - 10.4
-        - 10.3
-    - name: OpenBSD
-      versions:
-        - 6.0
-        - 6.4
-    - name: MacOSX
-      versions:
-        - 10.11
-        - 10.12
-        - 10.13
-    - name: Windows
-      versions:
-        - 2016
-        - 2012R2
+        - all
 
   galaxy_tags:
+    - glab
     - packaging
     - gitlab
     - git
+    - shell
 
 dependencies: []
