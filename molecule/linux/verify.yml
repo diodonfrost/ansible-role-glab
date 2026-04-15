@@ -2,7 +2,7 @@
 - name: Verify
   hosts: all
   tasks:
-    - name: Linux | Glab should be functionnal
+    - name: Linux | Glab should be functional
       ansible.builtin.command: glab --version
       register: glab_version_result
 

@@ -2,7 +2,7 @@
 - name: Verify
   hosts: all
   tasks:
-    - name: Windows | Glab should be functionnal
+    - name: Windows | Glab should be functional
       ansible.windows.win_command: glab --version
       register: glab_version_result
 
