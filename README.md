@@ -28,6 +28,14 @@ glab_pkg_url: "{{ _default_glab_pkg_url }}"
 # Define where to install glab binary
 # Default: use local system path defined in Ansible vars/*.yml
 glab_bin_directory: "{{ _default_glab_bin_directory }}"
+
+# Enable SHA256 checksum verification of the downloaded archive
+# Default: true
+glab_checksum_verify: true
+
+# Define the URL of the checksums file used to verify the downloaded archive
+# Default: use the URL defined in Ansible vars/main.yml
+glab_checksum_url: "{{ _default_glab_checksum_url }}"
 ```
 
 ## Dependencies

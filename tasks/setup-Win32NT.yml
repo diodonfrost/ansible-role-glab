@@ -23,4 +23,6 @@
   ansible.windows.win_get_url:
     url: "{{ glab_pkg_url }}"
     dest: "{{ glab_bin_directory }}"
+    checksum_url: "{{ glab_checksum_url if glab_checksum_verify else omit }}"
+    checksum_algorithm: "{{ 'sha256' if glab_checksum_verify else omit }}"
     force: true

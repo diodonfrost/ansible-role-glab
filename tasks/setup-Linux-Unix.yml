@@ -23,9 +23,16 @@
     state: directory
     mode: 0755
 
+- name: Linux/Unix | Download Glab archive
+  ansible.builtin.get_url:
+    url: "{{ glab_pkg_url }}"
+    dest: "/tmp/glab/glab_{{ glab_version_to_install }}.tar.gz"
+    checksum: "{{ ('sha256:' + glab_checksum_url) if glab_checksum_verify else omit }}"
+    mode: '0644'
+
 - name: Linux/Unix | Extract Glab in the TMP Folder
   ansible.builtin.unarchive:
-   src: "{{ glab_pkg_url }}"
+   src: "/tmp/glab/glab_{{ glab_version_to_install }}.tar.gz"
    dest: "/tmp/glab/"
    remote_src: true
    creates: "/tmp/glab/bin/glab"

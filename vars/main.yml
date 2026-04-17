@@ -8,3 +8,5 @@ _base_arch:
   arm64: 'arm64'
   armv7l: 'armv6'
   armv6l: 'armv6'
+
+_default_glab_checksum_url: "https://gitlab.com/gitlab-org/cli/-/releases/{{ glab_version_to_install }}/downloads/checksums.txt"
