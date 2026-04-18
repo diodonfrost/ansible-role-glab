@@ -29,6 +29,7 @@
     dest: "/tmp/glab/glab_{{ glab_version_to_install }}.tar.gz"
     checksum: "{{ ('sha256:' + glab_checksum_url) if glab_checksum_verify else omit }}"
     mode: '0644'
+  check_mode: false
 
 - name: Linux/Unix | Extract Glab in the TMP Folder
   ansible.builtin.unarchive:
